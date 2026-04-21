@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sarkari Sathi — Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Dashboard.css">
+</head>
+
+<body>
+    <div class="mountains"></div>
+
+    <div class="container">
+        <div class="topbar">
+            <div class="brand">
+                
+                <div>
+                    <h1>Sarkari Sathi</h1>
+                    <p>Step-by-step government guidance</p>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; align-items:center;">
+                <button class="pill" id="langToggle" onclick="toggleLanguage()" style="cursor: pointer; background: none; border: none; padding: 8px 16px;">Language: <b id="langDisplay">EN / नेपाली</b></button>
+                <button class="logout" onclick="window.location.href='login.html'">Logout</button>
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- Services -->
+            <section class="panel">
+                <div class="panelHead">
+                    <h2>What do you want to do today?</h2>
+                    <p>Sarkari Sathi will guide you step-by-step with required documents, fees, and next steps.</p>
+
+                    <div class="chips">
+                        <div class="chip" onclick="prefill('I lost my citizenship')">I lost my citizenship</div>
+                        <div class="chip" onclick="prefill('Documents needed for passport')">Documents needed for
+                            passport</div>
+                        <div class="chip" onclick="prefill('Driving license renewal steps')">Driving license renewal
+                            steps</div>
+                    </div>
+                </div>
+
+                <div class="services">
+                    <div class="svc" onclick="window.location.href='citizenship.html'">
+                        <div class="svcIcon">1</div>
+                        <div>
+                            <p class="svcTitle">Citizenship</p>
+                            <p class="svcSub">New / Lost / Correction</p>
+                        </div>
+                        <div class="arrow">›</div>
+                    </div>
+
+                    <div class="svc" onclick="window.location.href='passport.html'">
+                        <div class="svcIcon">2</div>
+                        <div>
+                            <p class="svcTitle">Passport</p>
+                            <p class="svcSub">New / Renewal / Appointment</p>
+                        </div>
+                        <div class="arrow">›</div>
+                    </div>
+
+                        <div class="svc" onclick="window.location.href='license.html'">
+                            <div class="svcIcon">3</div>
+                            <div>
+                                <p class="svcTitle">Driving License</p>
+                                <p class="svcSub">Two / Four wheeler</p>
+                            </div>
+                            <div class="arrow">›</div>
+                        </div>
+
+                        <div class="svc" onclick="window.location.href='voterid.html'">
+                            <div class="svcIcon">4</div>
+                            <div>
+                                <p class="svcTitle">Voter ID</p>
+                                <p class="svcSub">First-time / Correction</p>
+                            </div>
+                            <div class="arrow">›</div>
+                        </div>
+                    </div>
+            </section>
+
+            <!-- Chatbot -->
+            <aside class="panel">
+                <div class="chatHead">
+                    <div class="bot">:</div>
+                    <div>
+                        <h3>How can I help you today?</h3>
+                        <p>Ask anything about documents, steps, fees, and offices.</p>
+                    </div>
+                </div>
+
+                <div class="chatBody" id="chatBody">
+                    <div class="msg botMsg">
+                        👋 Hi! I’m Sarkari Sathi. Tell me what you want to do — I’ll ask the right questions and give
+                        you a checklist.
+                    </div>
+                    <div class="msg botMsg">
+                        Quick start: “I lost my citizenship” or “Documents needed for passport”.
+                    </div>
+                </div>
+
+                <div class="chatInput">
+                    <input id="chatInput" type="text" placeholder="Type your message..." />
+                    <button class="send" id="sendBtn">➤</button>
+                </div>
+
+                <div style="padding:10px 20px; font-size:13px; color:var(--muted);">
+                    <label style="display:flex;align-items:center;gap:8px;"><input id="smartToggle" type="checkbox"> Use Gemini smart replies (proxy)</label>
+                </div>
+
+                <div class="footerTrust">
+                    Tip: Click a service card OR just chat — both work.
+                </div>
+            </aside>
+        </div>
+    </div>
+
