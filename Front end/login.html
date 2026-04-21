@@ -97,3 +97,126 @@
       <h2>Welcome Back</h2>
       <p class="sub">Login to continue.</p>
 
+      <label>Email</label>
+      <div class="field">
+        <input id="email" type="email" placeholder="Enter email" />
+      </div>
+
+      <label>Password</label>
+      <div class="field">
+        <input id="pass" type="password" placeholder="Enter password" />
+      </div>
+
+      <button class="btn" id="loginBtn">Login</button>
+
+      <p class="footerText">
+        Don’t have an account?
+        <span class="link" id="showRegister">Create one</span>
+      </p>
+    </div>
+
+
+    <!-- REGISTER CARD -->
+    <div class="card hidden" id="registerCard">
+      <h2>Create Account</h2>
+      <p class="sub">Register to get started.</p>
+
+      <label>Email</label>
+      <div class="field">
+        <input id="reg-email" type="email" placeholder="Enter email" />
+      </div>
+
+      <label>Password</label>
+      <div class="field">
+        <input id="reg-pass" type="password" placeholder="Create password (min 6 chars)" />
+      </div>
+
+      <button class="btn" id="signupBtn">Register</button>
+
+      <p class="footerText">
+        Already have an account?
+        <span class="link" id="showLogin">Login</span>
+      </p>
+    </div>
+
+  </div>
+
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCXGM6eGWY9t2XhbnzlRBMwjSq1jEF-ZYI",
+      authDomain: "sarkari-sathi-4b4d2.firebaseapp.com",
+      projectId: "sarkari-sathi-4b4d2",
+      appId: "1:434265081062:web:9360165c60f0340111a727"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const loginCard = document.getElementById('loginCard');
+    const registerCard = document.getElementById('registerCard');
+    const showRegister = document.getElementById('showRegister');
+    const showLogin = document.getElementById('showLogin');
+
+    showRegister.onclick = () => {
+      loginCard.classList.add('hidden');
+      registerCard.classList.remove('hidden');
+    };
+
+    showLogin.onclick = () => {
+      registerCard.classList.add('hidden');
+      loginCard.classList.remove('hidden');
+    };
+
+    // ✅ REGISTER
+    document.getElementById('signupBtn').onclick = async () => {
+      const email = document.getElementById('reg-email').value;
+      const password = document.getElementById('reg-pass').value;
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Registration Successful 🎉");
+        registerCard.classList.add('hidden');
+        loginCard.classList.remove('hidden');
+        window.location.href = "Dashboard.html"; 
+        
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    // ✅ LOGIN
+    document.getElementById('loginBtn').onclick = async () => {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('pass').value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        
+       
+        window.location.href = "Dashboard.html"; 
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    // 🔎 Check if already logged in
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("Logged in as:", user.email);
+      }
+    });
+
+  </script>
+
+</body>
+</html>
